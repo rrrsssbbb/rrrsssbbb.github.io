@@ -8,15 +8,28 @@
   <body>
     <a-scene mindar-image="imageTargetSrc: ./targets-2.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <a-entity mindar-image-target="targetIndex: 0" id="targetEntity">
-        <a-plane color="blue" opacity="0.2" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
-      </a-entity>
+      
+      <!-- On-screen text -->
+      <a-entity id="text" position="0 0.5 -2" text="value: Image target not recognized; color: white; align: center;"></a-entity>
+      
+      <a-entity mindar-image-target="targetIndex: 0"></a-entity>
     </a-scene>
 
     <script>
       // Wait for the scene to load
       document.querySelector('a-scene').addEventListener('loaded', function () {
-        window.open('https://www.google.com', '_blank');
+        // Retrieve the mindar-image component
+        var mindARImage = document.querySelector('[mindar-image]');
+        
+        // Add event listener for when the image target is recognized
+        mindARImage.addEventListener('mindarimagerecognized', function(event) {
+          // Open the website when the image target is recognized
+          window.open('https://www.example.com', '_blank');
+          
+          // Update on-screen text
+          var textEntity = document.querySelector('#text');
+          textEntity.setAttribute('text', 'value: Image target recognized; color: white; align: center;');
+        });
       });
     </script>
   </body>
