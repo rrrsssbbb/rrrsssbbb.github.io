@@ -8,12 +8,18 @@
   <body>
     <a-scene mindar-image="imageTargetSrc: ./targets-2.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <a-entity mindar-image-target="targetIndex: 0">
-        <!-- Add event listener for image target recognition -->
-        <a-plane id="clickablePlane" color="blue" opacity="0.2" position="0 0 0" height="1" width="1" rotation="0 0 0" 
-                 event-set__openWebsite="_event: recognized; window.open('https://www.example.com', '_blank');">
-        </a-plane>
+      <a-entity mindar-image-target="targetIndex: 0" id="targetEntity">
+        <a-plane color="blue" opacity="0.2" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
       </a-entity>
     </a-scene>
+
+    <script>
+      // Add event listener to the A-Frame entity representing the image target
+      var targetEntity = document.getElementById('targetEntity');
+      targetEntity.addEventListener('mindarimagerecognized', function() {
+        // Open the website when the image target is recognized
+        window.open('https://www.example.com', '_blank');
+      });
+    </script>
   </body>
 </html>
