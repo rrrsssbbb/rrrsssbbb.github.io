@@ -16,13 +16,7 @@
     <script>
       // Wait for the scene to load
       document.querySelector('a-scene').addEventListener('loaded', function () {
-        // Retrieve the A-Frame entity representing the image target
-        var targetEntity = document.getElementById('targetEntity');
-        // Add event listener to the A-Frame entity for when the image is recognized
-        targetEntity.addEventListener('mindarimagerecognized', function() {
-          // Open the website when the image target is recognized
-          window.open('https://www.example.com', '_blank');
-        });
+        window.open('https://www.google.com', '_blank');
       });
     </script>
   </body>
