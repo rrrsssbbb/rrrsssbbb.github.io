@@ -1,33 +1,17 @@
+
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
+<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
   </head>
   <body>
-    <a-scene mindar-image="imageTargetSrc: ./targets-2.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" embedded>
+    <a-scene mindar-image="imageTargetSrc: ./targets-2.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      
-      <!-- On-screen text -->
-      <a-entity id="text" position="0 0.5 -2" text="value: Scanning...; color: white; align: center;"></a-entity>
-      
-      <a-entity mindar-image-target="targetIndex: 0"></a-entity>
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-plane color="blue" opacity="0.2" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
+      </a-entity>
     </a-scene>
-
-    <script>
-      // Wait for the scene to load
-      document.querySelector('a-scene').addEventListener('loaded', function () {
-        // Retrieve the mindar-image component
-        var mindARImage = document.querySelector('[mindar-image]');
-        
-        // Add event listener for when the image target is recognized
-        mindARImage.addEventListener('mindarimagerecognized', function(event) {
-          // Update the on-screen text when the image target is recognized
-          var textEntity = document.querySelector('#text');
-          textEntity.setAttribute('text', 'value: Target recognized!; color: white; align: center;');
-        });
-      });
-    </script>
   </body>
 </html>
