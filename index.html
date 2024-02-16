@@ -7,16 +7,10 @@
 </head>
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <!-- Define the HIRO marker -->
         <a-nft
             type="nft"
-            url="hiro.png" <!-- Updated URL -->
-            smooth="true"
-            smoothCount="10"
-            smoothTolerance=".01"
-            smoothThreshold="5"
+            url="hiro.png"
         >
-            <!-- Define content to be displayed on marker detection -->
             <a-entity
                 position="0 0 0"
                 geometry="primitive: sphere; radius: 0.1;"
