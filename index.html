@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AR.js Image Tracking with Event</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+        <!-- Define the HIRO marker -->
+        <a-nft
+            type="nft"
+            url="https://upload.wikimedia.org/wikipedia/commons/2/2f/Hiro_marker_ARjs.png"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+        >
+            <!-- Define content to be displayed on marker detection -->
+            <a-entity
+                position="0 0 0"
+                geometry="primitive: sphere; radius: 0.1;"
+                material="color: red;"
+            ></a-entity>
+        </a-nft>
+        <a-entity camera></a-entity>
+
+        <!-- Pop-up text element -->
+        <a-entity
+            position="0 1.5 -2"
+            text="value: Marker Detected!; align: center; width: 4; wrapCount: 20; color: white;"
+            visible="false"
+            id="popupText"
+        ></a-entity>
+    </a-scene>
+
+    <!-- JavaScript to show/hide pop-up text -->
+    <script>
+        document.querySelector('a-nft').addEventListener('markerFound', function() {
+            var popupText = document.querySelector('#popupText');
+            popupText.setAttribute('visible', 'true');
+            setTimeout(function() {
+                popupText.setAttribute('visible', 'false');
+            }, 2000); // Hide pop-up text after 2 seconds
+        });
+    </script>
+</body>
+</html>
 
