@@ -9,8 +9,14 @@
     <a-scene mindar-image="imageTargetSrc: ./targets-2.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       
+      <!-- Scanning device -->
+      <a-entity id="scanner" position="0 0 -2">
+        <a-box width="0.2" height="0.2" depth="0.2" color="red"></a-box>
+        <a-cylinder radius="0.05" height="0.6" color="red"></a-cylinder>
+      </a-entity>
+      
       <!-- On-screen text -->
-      <a-entity id="text" position="0 0.5 -2" text="value: Image target not recognized; color: white; align: center;"></a-entity>
+      <a-entity id="text" position="0 0.5 -2" text="value: Scanning...; color: white; align: center;"></a-entity>
       
       <a-entity mindar-image-target="targetIndex: 0"></a-entity>
     </a-scene>
@@ -23,12 +29,9 @@
         
         // Add event listener for when the image target is recognized
         mindARImage.addEventListener('mindarimagerecognized', function(event) {
-          // Open the website when the image target is recognized
-          window.open('https://www.example.com', '_blank');
-          
-          // Update on-screen text
+          // Update the on-screen text when the image target is recognized
           var textEntity = document.querySelector('#text');
-          textEntity.setAttribute('text', 'value: Image target recognized; color: white; align: center;');
+          textEntity.setAttribute('text', 'value: Target recognized!; color: white; align: center;');
         });
       });
     </script>
